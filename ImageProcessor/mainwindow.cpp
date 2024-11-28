@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "ImageLoader.h"
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->LoadImage, &QPushButton::clicked, this, &MainWindow::onLoadImageClicked);
+    connect(ui->LoadImage, &QPushButton::clicked, this, &MainWindow::openImageLoader);
 }
 
 MainWindow::~MainWindow()
@@ -16,8 +17,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::onLoadImageClicked()
+void MainWindow::openImageLoader()
 {
-    // This is the backend function handling the button click
-    QMessageBox::information(this, "Button Clicked", "The push button was clicked!");
+    // Create a new ImageLoader window and show it
+    Utils::ImageLoader *imageLoader = new Utils::ImageLoader();
+    imageLoader->setAttribute(Qt::WA_DeleteOnClose); // Automatically delete the widget when closed
+    imageLoader->resize(800, 600);
+    imageLoader->show();
 }

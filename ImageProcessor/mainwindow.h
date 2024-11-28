@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void onLoadImageClicked();
+    void openImageLoader();
 
 private:
     Ui::MainWindow *ui;
